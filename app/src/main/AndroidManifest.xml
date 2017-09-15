@@ -12,7 +12,7 @@
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="insert-your-api-key-here" />
+            android:value="AIzaSyAyGYry5Zr1oQgnzil00Hq8SMSYlyc5zLA" />
 
         <activity android:name="com.example.android.findme.MainActivity">
             <intent-filter>
