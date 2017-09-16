@@ -1,4 +1,4 @@
-package com.example.android.findme.provider;
+package com.example.android.seeme.provider;
 
 /*
 * Copyright (C) 2017 The Android Open Source Project
@@ -26,7 +26,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 
-import static com.example.android.findme.provider.PlaceContract.PlaceEntry;
+import static com.example.android.seeme.provider.PlaceContract.PlaceEntry;
 
 
 public class PlaceContentProvider extends ContentProvider {

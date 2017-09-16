@@ -1,9 +1,4 @@
-package com.example.android.findme;
-
-/**
- * Created by A455L on 15/09/2017.
- */
-
+package com.example.android.seeme;
 
 /*
 * Copyright (C) 2017 The Android Open Source Project
@@ -42,7 +37,7 @@ import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.Toast;
 
-import com.example.android.findme.provider.PlaceContract;
+import com.example.android.seeme.provider.PlaceContract;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
@@ -76,6 +71,11 @@ public class MainActivity extends AppCompatActivity implements
     private GoogleApiClient mClient;
     private Geofencing mGeofencing;
 
+    /**
+     * Called when the activity is starting
+     *
+     * @param savedInstanceState The Bundle that contains the data supplied in onSaveInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -119,16 +119,32 @@ public class MainActivity extends AppCompatActivity implements
 
     }
 
+    /***
+     * Called when the Google API Client is successfully connected
+     *
+     * @param connectionHint Bundle of data provided to clients by Google Play services
+     */
     @Override
     public void onConnected(@Nullable Bundle connectionHint) {
         refreshPlacesData();
         Log.i(TAG, "API Client Connection Successful!");
     }
 
+    /***
+     * Called when the Google API Client is suspended
+     *
+     * @param cause cause The reason for the disconnection. Defined by constants CAUSE_*.
+     */
     @Override
     public void onConnectionSuspended(int cause) {
         Log.i(TAG, "API Client Connection Suspended!");
     }
+
+    /***
+     * Called when the Google API Client failed to connect to Google Play Services
+     *
+     * @param result A ConnectionResult that can be used for resolving the error
+     */
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult result) {
         Log.e(TAG, "API Client Connection Failed!");
@@ -159,6 +175,12 @@ public class MainActivity extends AppCompatActivity implements
             }
         });
     }
+
+    /***
+     * Button Click event handler to handle clicking the "Add new location" Button
+     *
+     * @param view
+     */
     public void onAddPlaceButtonClicked(View view) {
         if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED) {
@@ -181,6 +203,13 @@ public class MainActivity extends AppCompatActivity implements
     }
 
 
+    /***
+     * Called when the Place Picker Activity returns back with a selected place (or after canceling)
+     *
+     * @param requestCode The request code passed when calling startActivityForResult
+     * @param resultCode  The result code specified by the second activity
+     * @param data        The Intent that carries the result data.
+     */
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == PLACE_PICKER_REQUEST && resultCode == RESULT_OK) {
             Place place = PlacePicker.getPlace(this, data);
@@ -197,7 +226,7 @@ public class MainActivity extends AppCompatActivity implements
             // Insert a new place into DB
             ContentValues contentValues = new ContentValues();
             contentValues.put(PlaceContract.PlaceEntry.COLUMN_PLACE_ID, placeID);
-            getContentResolver().insert(PlaceContract.PlaceEntry.CONTENT_URI, contentValues);
+            final Uri insert = getContentResolver().insert(PlaceContract.PlaceEntry.CONTENT_URI, contentValues);
 
             // Get live data information
             refreshPlacesData();

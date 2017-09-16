@@ -1,4 +1,4 @@
-package com.example.android.findme;
+package com.example.android.seeme;
 
 /**
  * Created by A455L on 15/09/2017.

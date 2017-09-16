@@ -1,4 +1,4 @@
-package com.example.android.findme;
+package com.example.android.seeme;
 
 /*
 * Copyright (C) 2017 The Android Open Source Project

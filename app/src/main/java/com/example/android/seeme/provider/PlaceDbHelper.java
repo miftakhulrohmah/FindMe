@@ -1,4 +1,4 @@
-package com.example.android.findme.provider;
+package com.example.android.seeme.provider;
 
 /*
 * Copyright (C) 2017 The Android Open Source Project
@@ -20,12 +20,12 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.example.android.findme.provider.PlaceContract.PlaceEntry;
+import com.example.android.seeme.provider.PlaceContract.PlaceEntry;
 
 public class PlaceDbHelper extends SQLiteOpenHelper {
 
     // The database name
-    private static final String DATABASE_NAME = "shushme.db";
+    private static final String DATABASE_NAME = "seeme.db";
 
     // If you change the database schema, you must increment the database version
     private static final int DATABASE_VERSION = 1;
